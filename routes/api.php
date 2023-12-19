@@ -13,6 +13,7 @@ use App\Http\Controllers\gestion_tipo_documento\TipoDocumentoController;
 use App\Http\Controllers\gestion_tipopago\TipoPagoController;
 use App\Http\Controllers\gestion_tipotransaccion\TipoTransaccionController;
 use App\Http\Controllers\gestion_usuario\UserController as Gestion_usuarioUserController;
+use App\Http\Controllers\gestion_vehiculos\VehiculoController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Laravel\Sanctum\Http\Controllers\CsrfCookieController;
@@ -74,4 +75,5 @@ Route::post('register_user', [AuthController::class, 'register']);
 Route::post('login_user', [AuthController::class, 'login']);
 Route::middleware(['jwt.verify'])->group(function () {
     Route::get('user_data', [AuthController::class, 'userData']);
+    Route::post('store_vehiculo', [VehiculoController::class, 'storeVehiculo']);
 });
