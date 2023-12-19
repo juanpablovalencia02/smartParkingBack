@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\auth\AuthController;
 use App\Http\Controllers\gestion_empresa\CompanyController;
 use App\Http\Controllers\gestion_rol\RolController;
 use App\Http\Controllers\auth\LoginController;
@@ -66,3 +67,11 @@ Route::get('lista_usuarios', [Gestion_usuarioUserController::class, 'getUsers'])
 Route::resource('usuarios', Gestion_usuarioUserController::class);
 
 Route::put('asignar_roles', [Gestion_usuarioUserController::class, 'asignation']);
+
+
+
+Route::post('register_user', [AuthController::class, 'register']);
+Route::post('login_user', [AuthController::class, 'login']);
+Route::middleware(['jwt.verify'])->group(function () {
+    Route::get('user_data', [AuthController::class, 'userData']);
+});
